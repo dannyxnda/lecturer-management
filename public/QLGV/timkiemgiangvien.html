@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tim Kiếm Giảng Viên</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="./js/jquery-1.11.1.min.js"></script>
+  <style type="text/css">
+  </style>
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <h3>Tìm Kiếm Giảng Viên</h3>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'dvct')" id="defaultOpen">Đơn Vị Công Tác</button>
+        <button class="tablinks" onclick="openCity(event, 'lvqt')">Lĩnh Vực Quan Tâm</button>
+      </div>
+
+      <div id="dvct" class="tabcontent">
+        <ul style="list-style-type:none; padding-left: 2%">
+          <li><p>Bộ môn 1</p></li>
+          <li><p>Bộ môn 2</p></li>
+          <li><p>Bộ môn 3</p></li>
+          <li><p>Bộ môn 4</p></li>
+          <li><p>Bộ môn 5</p></li>
+          <li><p>Bộ môn 6</p></li>
+          <li><p>Bộ môn 7</p></li>
+          <li><p>Bộ môn 8</p></li>
+          <li><p>Bộ môn 9</p></li>
+          <li><p>Bộ môn 10</p></li>
+          <li><p>Bộ môn 6</p></li>
+          <li><p>Bộ môn 7</p></li>
+          <li><p>Bộ môn 8</p></li>
+          <li><p>Bộ môn 9</p></li>
+          <li><p>Bộ môn 10</p></li>
+          <li><p>Bộ môn 1</p></li>
+          <li><p>Bộ môn 2</p></li>
+          <li><p>Bộ môn 3</p></li>
+          <li><p>Bộ môn 4</p></li>
+          <li><p>Bộ môn 5</p></li>
+          <li><p>Bộ môn 6</p></li>
+          <li><p>Bộ môn 7</p></li>
+          <li><p>Bộ môn 8</p></li>
+          <li><p>Bộ môn 9</p></li>
+          <li><p>Bộ môn 10</p></li>
+          <li><p>Bộ môn 6</p></li>
+          <li><p>Bộ môn 7</p></li>
+          <li><p>Bộ môn 8</p></li>
+          <li><p>Bộ môn 9</p></li>
+          <li><p>Bộ môn 10</p></li>
+        </ul>  
+      </div>
+
+      <div id="lvqt" class="tabcontent">
+        <ul id="tree1" class="tree"> 
+         <li class="branch"><a>THIẾT KẾ WEB</a> 
+          <ul> 
+           <li>Photoshop</li>
+          </ul> 
+         </li>
+        </ul>
+      </div>
+
+      <script type="text/javascript">
+        $.fn.extend({    
+        treed: function (o) {            
+        var openedClass = 'glyphicon-minus-sign';      
+        var closedClass = 'glyphicon-plus-sign';            
+        if (typeof o != 'undefined'){        
+        if (typeof o.openedClass != 'undefined'){        
+        openedClass = o.openedClass;        
+        }        
+         
+        if (typeof o.closedClass != 'undefined'){        
+        closedClass = o.closedClass;        
+        }      
+        };              
+         
+        //initialize each of the top levels        
+        var tree = $(this);        
+        tree.addClass("tree");        
+        tree.find('li').has("ul").each(function () {            
+        var branch = $(this); //li with children ul            
+        branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");            
+        branch.addClass('branch');            
+        branch.on('click', function (e) {                
+        if (this == e.target) {                    
+        var icon = $(this).children('i:first');                    
+        icon.toggleClass(openedClass + " " + closedClass);                    
+        $(this).children().children().toggle();                
+        }            
+        })            
+        branch.children().children().toggle();        
+        });        
+         
+        //fire event from the dynamically added icon      
+        tree.find('.branch .indicator').each(function(){        
+         
+        $(this).on('click', function () {            
+        $(this).closest('li').click();        
+        });      
+        });        
+        //fire event to open branch if the li contains an anchor instead of text        
+         
+        tree.find('.branch>a').each(function () {            
+        $(this).on('click', function (e) {                
+        $(this).closest('li').click();                
+        e.preventDefault();            
+        });        
+        });        
+         
+        //fire event to open branch if the li contains a button instead of text        
+        tree.find('.branch>button').each(function () {            
+        $(this).on('click', function (e) {                
+        $(this).closest('li').click();                
+        e.preventDefault();            
+        });        
+        });    
+        }});
+        $('#tree1').treed();
+      </script>
+
+      <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      </script>
+    </div>
+
+    <div class="col-sm-7">
+      <p>Danh Sách Giảng Viên:</p>            
+      <table class="table">
+        <thead>
+          <tr>
+            <th>HHHV</th>
+            <th>Tên Giảng Viên</th>
+            <th>Đơn Vị</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Thạc Sĩ</td>
+            <td>Giang Viên A</td>
+            <td>Khoa học máy tính</td>
+          </tr>
+          <tr>
+            <td>Thạc Sĩ</td>
+            <td>Giang Viên B</td>
+            <td>Truyền thông mạng</td>
+          </tr>
+          <tr>
+            <td>Tiến Sĩ</td>
+            <td>Giang Viên C</td>
+            <td>Khoa Học Kỹ thuật</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
